@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wildnature/homePage.dart';
 import 'package:wildnature/services/authService.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -105,9 +106,14 @@ class _SignUpPageState extends State<SignUpPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(0.0)),
                             onPressed: () {
-                              context.read<AuthenticationService>().signIn(
+                              context.read<AuthenticationService>().signUp(
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim());
+                              Navigator.push(
+                                  //TODO: Is it the right way? Find out to go in the homePage right after singing up!
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomePage()));
                             }))
                   ],
                 ),
