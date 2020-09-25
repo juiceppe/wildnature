@@ -39,9 +39,9 @@ class _HomePage extends State<HomePage> {
             TabItem(icon: Icons.settings, title: 'Settings'),
           ],
           initialActiveIndex: 2,
-          onTap: (int i) {
+          onTap: (int pageIndex) {
             setState(() {
-              _selectePage = i;
+              _selectePage = pageIndex;
             });
           },
         ),
