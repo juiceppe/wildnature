@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wildnature/services/authService.dart';
+import 'package:wildnature/signUp.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -118,7 +119,10 @@ class _LoginPageState extends State<LoginPage> {
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(0.0)),
                               onPressed: () {
-                                //TODO: Navigate to registration page
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => SignUpPage()));
                               }))
                     ],
                   ),
@@ -132,3 +136,5 @@ class _LoginPageState extends State<LoginPage> {
         ));
   }
 }
+
+//TODO:context.read<AuthenticationService>().signOut(); Add this to signOut Button
