@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wildnature/homePage.dart';
+import 'package:wildnature/landingPage.dart';
 import 'package:wildnature/loginPage.dart';
 import 'package:wildnature/services/authService.dart';
 
@@ -42,7 +42,7 @@ class AuthenticationWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
     if (firebaseUser != null) {
-      return HomePage();
+      return LandingPage();
     }
     return LoginPage();
   }

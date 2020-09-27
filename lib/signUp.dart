@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wildnature/homePage.dart';
+import 'package:wildnature/landingPage.dart';
 import 'package:wildnature/services/authService.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -113,7 +113,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                   //TODO: Is it the right way? Find out to go in the homePage right after singing up!
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomePage()));
+                                      builder: (context) => LandingPage()));
                             }))
                   ],
                 ),
