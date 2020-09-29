@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wildnature/landingPage.dart';
-import 'package:wildnature/loginPage.dart';
+import 'package:wildnature/views/landingPage.dart';
+import 'package:wildnature/views/loginPage.dart';
 import 'package:wildnature/services/authService.dart';
 
 Future<void> main() async {
