@@ -107,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                                     email: emailController.text.trim(),
                                     password: passwordController.text.trim());
                               })),
-                      SizedBox(width: 60),
+                      SizedBox(width: 30),
                       SizedBox(
                           width: 130,
                           child: FlatButton(

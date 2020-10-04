@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wildnature/widgets/cardWidget.dart';
 import 'package:wildnature/widgets/sizeConfig.dart';
+import 'package:wildnature/services/databaseService.dart';
+import 'package:wildnature/widgets/userName.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -11,6 +13,7 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final Color dominantBg = Color.fromRGBO(143, 196, 186, 1);
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       SizedBox(width: 5 * SizeConfig.blockSizeHorizontal),
                       Column(
                         children: <Widget>[
-                          Text(
-                            "Juiceppe",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 5 * SizeConfig.blockSizeHorizontal,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                          UserName(),
                           SizedBox(
                             height: 2 * SizeConfig.blockSizeVertical,
                           ),
@@ -133,7 +129,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          left: 10 * SizeConfig.blockSizeHorizontal, top: 20),
+                          left: 9 * SizeConfig.blockSizeHorizontal, top: 20),
                       child: Container(
                         height: 5 * SizeConfig.blockSizeVertical,
                         decoration: BoxDecoration(
@@ -142,7 +138,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         child: FlatButton(
                           onPressed: () {
-                            print('ok');
+                            print('ok');  
                           },
                           child: Text(
                             'EDIT PROFILE',
@@ -162,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 left: 5 * SizeConfig.blockSizeHorizontal,
                 right: 5 * SizeConfig.blockSizeHorizontal,
                 top: 50 * SizeConfig.blockSizeVertical,
-                bottom: 10 * SizeConfig.blockSizeVertical),
+                bottom: 4 * SizeConfig.blockSizeVertical),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: [ProfileCard(), SizedBox(width: 10), ProfileCard()],

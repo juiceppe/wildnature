@@ -14,13 +14,15 @@ class DatabaseService {
         .set({'fullName': fullName, 'createdDate': userCreatedDate});
   }
 
-  Future getUserName() async {
+
+  Future<String> getUserName() async {
     User user = FirebaseAuth.instance.currentUser;
     var doc = usersCollection.doc(user.uid);
     String fullName;
-    doc.get().then((value) => {
-          if (value.data().length > 0) {fullName = value.data()['fullName']},
+    await doc.get().then((value) => {
+          fullName = value.data()["fullName"],
+          print(fullName)
         });
-    //TODO: Find a way to return fullName
+      return fullName;
   }
 }
