@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:wildnature/services/databaseService.dart';
 import 'package:wildnature/widgets/cardWidget.dart';
 import 'package:wildnature/widgets/sizeConfig.dart';
-import 'package:wildnature/services/databaseService.dart';
 import 'package:wildnature/widgets/userName.dart';
+import 'package:wildnature/widgets/userBio.dart';
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key key}) : super(key: key);
@@ -13,6 +14,10 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   final Color dominantBg = Color.fromRGBO(143, 196, 186, 1);
+  TextEditingController bioController = TextEditingController();
+  String editBio = 'EDIT BIO';
+  String bioText = '';
+  bool isReadOnly = true;
 
 
   @override
@@ -58,11 +63,21 @@ class _ProfilePageState extends State<ProfilePage> {
                           SizedBox(
                             height: 2 * SizeConfig.blockSizeVertical,
                           ),
-                          Text(
-                            "Bio: WildNature Developer",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 3.5 * SizeConfig.blockSizeHorizontal,
+                          Container(
+                            height: 10 * SizeConfig.blockSizeVertical,
+                            width: 40 * SizeConfig.blockSizeHorizontal,
+                            child: Center(
+                              child: TextField(
+                                controller: bioController,
+                                readOnly: isReadOnly,
+                                decoration: InputDecoration(
+                                  border: OutlineInputBorder(),
+                                  suffixIcon: Padding(
+                                    padding: EdgeInsets.only(right: 60),
+                                    child: UserBio()
+                                  )
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -138,10 +153,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                         child: FlatButton(
                           onPressed: () {
-                            print('ok');  
+                            setState(() {
+                              if(editBio == 'EDIT BIO'){
+                                editBio = 'Save Bio';
+                                isReadOnly = false;
+                                } else {
+                                  bioText = bioController.text;
+                                  DatabaseService().updateBio(bioText);
+                                  editBio = 'EDIT BIO';
+                                  isReadOnly = true;
+                                  bioController.clear();
+                                }
+                            });
                           },
                           child: Text(
-                            'EDIT PROFILE',
+                            editBio,
                             style: TextStyle(color: Colors.white60),
                           ),
                         ),

@@ -26,6 +26,18 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             RaisedButton(
+              child: Text("Get Bio"),
+              onPressed: () {
+                DatabaseService().getUserBio();
+              },
+            ),
+            RaisedButton(
+              child: Text("Update Bio"),
+              onPressed: () {
+                DatabaseService().updateBio('ciao');
+              },
+            ),
+            RaisedButton(
               child: Text("Sign Out"),
               onPressed: () {
                 context.read<AuthenticationService>().signOut();
