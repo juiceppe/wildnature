@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             height: 10 * SizeConfig.blockSizeVertical,
                             width: 40 * SizeConfig.blockSizeHorizontal,
                             child: Center(
-                              child: TextField(
+                              child: TextField( //TODO: Need to fix bioBox
                                 controller: bioController,
                                 readOnly: isReadOnly,
                                 decoration: InputDecoration(
@@ -187,7 +187,13 @@ class _ProfilePageState extends State<ProfilePage> {
                 bottom: 4 * SizeConfig.blockSizeVertical),
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [ProfileCard(), SizedBox(width: 10), ProfileCard()],
+              children: [
+                FlatButton.icon(
+                  icon: Icon(Icons.add),
+                  label: Text('Add Activities'),
+                  onPressed: null, 
+                  )
+              ],
             ))
       ],
     ));

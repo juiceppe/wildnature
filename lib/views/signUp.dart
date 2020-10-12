@@ -13,7 +13,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  String _fullName;
+  String _fullName; //TODO: Change all reference from _fullname to UserName
   String _email;
   String _password;
 

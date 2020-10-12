@@ -9,7 +9,7 @@ class DatabaseService {
   final CollectionReference usersCollection =
       FirebaseFirestore.instance.collection('users');
 
-  Future updateUser(String fullName, DateTime userCreatedDate, String userBio) async { //TODO: Starting Bio and how to update bio from services
+  Future updateUser(String fullName, DateTime userCreatedDate, String userBio) async {
     return await usersCollection
         .doc(uid)
         .set({'fullName': fullName, 'createdDate': userCreatedDate, 'userBio': userBio});
