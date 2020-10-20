@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:wildnature/services/databaseService.dart';
 import 'package:wildnature/widgets/cardWidget.dart';
 import 'package:wildnature/widgets/sizeConfig.dart';
@@ -17,8 +18,94 @@ class _ProfilePageState extends State<ProfilePage> {
   TextEditingController bioController = TextEditingController();
   String editBio = 'EDIT BIO';
   String bioText = '';
+  String selectedActivity;
+  String activityDescription = '';
+  List activityList = ['Camp', 'smth']; 
+  List<DynamicCard> cardList = [];
   bool isReadOnly = true;
+  bool addWidget = false;
 
+  Widget createActivityCard(String activy, String activityDesc){
+    return SizedBox(
+      height: 250,
+      width: 350,
+      child: Card(
+        elevation: 6,
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(activy),
+            ),
+            Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  activityDesc,
+                  style:
+                      TextStyle(fontSize: 5 * SizeConfig.blockSizeHorizontal),
+                )),
+            Container(
+              width: 200,
+              height: 160,
+              child: Image.asset('assets/camping.png', fit: BoxFit.fill),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  addCard(){
+    cardList = [];
+    setState(() {
+      cardList.add(new DynamicCard());
+    });
+  }
+
+  _fillCardDialog(context){
+    return    Alert(
+        context: context,
+        title: "Add activity",
+        content: Column(
+          children: <Widget>[
+            DropdownButton(
+              hint: Text('Select your activity'),
+              icon: Icon(Icons.arrow_drop_down),
+              value: selectedActivity,
+              onChanged: (value){
+                setState(() {
+                  value = selectedActivity; //TODO Why dropdown doesn't update value, it still shows the old one     
+                  print(value);  //TODO It is null, why?             
+                });
+              },
+              //value: selectedActivity,
+              items: activityList.map((value) {
+                return DropdownMenuItem(
+                  value: value, 
+                  child: Text(value));
+              }).toList() 
+              ),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Where',
+              ),
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () {
+              activityDescription = '1234';  
+             
+              Navigator.pop(context);
+              },
+            child: Text(
+              "Add Activity",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -187,15 +274,23 @@ class _ProfilePageState extends State<ProfilePage> {
                 bottom: 4 * SizeConfig.blockSizeVertical),
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: [
+              children: <Widget>[
                 FlatButton.icon(
                   icon: Icon(Icons.add),
                   label: Text('Add Activities'),
-                  onPressed: null, 
-                  )
+                  onPressed: (){
+                   _fillCardDialog(context);
+                    addWidget = true;
+                  }, 
+                  ),
+                  if(addWidget)
+                     Container(
+                      child: createActivityCard('Added by user', 'WE DID IT')), //TODO We have to change this in order to work properly with data from db - Implement new listViewActivity.dart
               ],
             ))
       ],
-    ));
+      
+    )
+    );
   }
 }

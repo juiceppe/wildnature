@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wildnature/widgets/sizeConfig.dart';
 
-class ProfileCard extends StatelessWidget {
+class DynamicCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
