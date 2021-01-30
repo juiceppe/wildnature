@@ -152,7 +152,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           Container(
                             height: 10 * SizeConfig.blockSizeVertical,
-                            width: 40 * SizeConfig.blockSizeHorizontal,
+                            width: 38 * SizeConfig.blockSizeHorizontal,
                             child: Center(
                               child: TextField( //TODO: Need to fix bioBox
                                 controller: bioController,
